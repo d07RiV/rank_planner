@@ -1,24 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import classNames from 'classnames';
+import './App.scss';
+
+import RankPlanner from './rank';
+import HonorCap from './honor';
 
 function App() {
+  const [mode, setMode] = React.useState("rank");
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ul className="tabs">
+        <li className={classNames({active: mode === "rank"})} onClick={() => setMode("rank")}>
+          Rank Planner
+        </li>
+        <li className={classNames({active: mode === "honor"})} onClick={() => setMode("honor")}>
+          Honor Cap
+        </li>
+      </ul>
+      {mode === "rank" && <RankPlanner/>}
+      {mode === "honor" && <HonorCap/>}
     </div>
   );
 }
